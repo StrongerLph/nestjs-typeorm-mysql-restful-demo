@@ -59,9 +59,9 @@
     }
   },
   "lint-staged": {
-    "{src,test}/**/*.ts": [
+    "*.{js,ts}": [
       "prettier . --write",
-      "eslint --fix",
+      "eslint --max-warnings 0 --fix",
       "git add --all"
     ]
   },
