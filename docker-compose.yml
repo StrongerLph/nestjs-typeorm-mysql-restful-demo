@@ -1,0 +1,21 @@
+version: '3.8' # 可以根据需要选择合适的版本
+
+services:
+  mysql:
+    image: mysql:latest # 使用官方MySQL镜像的最新版本
+    container_name: typeorm_mysql_container # 为容器指定一个名称
+    environment:
+      MYSQL_ROOT_PASSWORD: root # 设置root用户的密码
+      MYSQL_DATABASE: test # 指定要创建的数据库名
+      MYSQL_USER: admin # 创建一个新的非root用户
+      MYSQL_PASSWORD: admin # 设置新用户的密码
+      TZ: 'Asia/Shanghai' # 设置时区为上海
+    volumes:
+      - mysql_volume:/var/lib/mysql # 数据卷用于持久化MySQL数据
+    ports:
+      - '3306:3306' # 将容器的3306端口映射到宿主机的3306端口
+    command: ['--default-time-zone=+08:00'] # 设置服务的默认时区为东八区（+08:00）
+
+volumes:
+  mysql_volume: # 定义一个数据卷
+
